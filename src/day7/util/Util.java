@@ -16,4 +16,12 @@ public class Util {
         System.out.println(System.getProperty("user.dir"));
         System.out.println(System.getProperty("java.class.path"));//jars
     }
+
+    public static String uppperFirst(String str) {
+        if (Character.isUpperCase(str.charAt(0))) {
+            return str;
+        }
+        String a = str.substring(0, 1);
+        return a.toUpperCase() + str.substring(1);
+    }
 }
