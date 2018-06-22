@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--开启注解-->
+    <context:annotation-config/>
+
+    <context:component-scan base-package="day4"/>
+
+    <!--手写切面配置-->
+    <aop:config>
+        <aop:aspect ref="a">
+            <aop:pointcut id="pointCut" expression="execution(* day4.Main.*(..)))"></aop:pointcut>
+            <aop:before method="before" pointcut-ref="pointCut"></aop:before>
+            <aop:after method="after" pointcut="execution(* day4.Main.*(..))"></aop:after>
+        </aop:aspect>
+    </aop:config>
+
+    <bean id="a" class="day4.A"/>
+
+    <bean id="user" class="day4.domain.User">
+        <property name="id" value="2"/>
+        <property name="name" value="笨虎"/>
+    </bean>
+</beans>
