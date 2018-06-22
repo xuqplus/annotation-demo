@@ -17,11 +17,17 @@ public class Util {
         System.out.println(System.getProperty("java.class.path"));//jars
     }
 
-    public static String uppperFirst(String str) {
+    public static String upperFirst(String str) {
         if (Character.isUpperCase(str.charAt(0))) {
             return str;
         }
-        String a = str.substring(0, 1);
-        return a.toUpperCase() + str.substring(1);
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
+    public static String lowerFirst(String str) {
+        if (Character.isLowerCase(str.charAt(0))) {
+            return str;
+        }
+        return str.substring(0, 1).toLowerCase() + str.substring(1);
     }
 }
