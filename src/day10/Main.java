@@ -21,15 +21,21 @@ public class Main {
 
     public static void testReflect() {
         User user = new User();
-        Field[] fields = User.class.getFields(); // 所有public的, 包括继承的
-        Field[] declaredFields = User.class.getDeclaredFields(); // 所有内部定义的
-        Method[] methods = User.class.getMethods(); // 所有public的, 包括继承的
-        Method[] declaredMethods = User.class.getDeclaredMethods(); // 所有内部定义的
-        Annotation[] annotations = User.class.getAnnotations();
-        Annotation[] declaredAnnotations = User.class.getDeclaredAnnotations();
+        Class clazz = User.class;
+        Field[] fields = clazz.getFields(); // 所有public的, 包括继承的
+        Field[] declaredFields = clazz.getDeclaredFields(); // 所有内部定义的
+        Method[] methods = clazz.getMethods(); // 所有public的, 包括继承的
+        Method[] declaredMethods = clazz.getDeclaredMethods(); // 所有内部定义的
+        Annotation[] annotations = clazz.getAnnotations();
+        Annotation[] declaredAnnotations = clazz.getDeclaredAnnotations();
 
+        deal(clazz);
         deal(user, fields, declaredFields);
         deal(user, methods, declaredMethods);
+    }
+
+    private static void deal(Class clazz) {
+        System.out.println(clazz.getName());
     }
 
     private static void deal(User user, Field[] fields, Field[] declaredFields) {
@@ -61,7 +67,7 @@ public class Main {
 
     private static void deal(User user, Method[] methods, Method[] declaredMethods) {
         for (Method method : methods) {
-            System.err.println(method);
+            System.out.println(String.format("methods, name=%s, modifiers=%s", method.getName(), method.getModifiers()));
         }
     }
 }
